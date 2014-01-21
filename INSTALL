@@ -1,0 +1,9 @@
+Building Astrocoin
+
+See doc/readme-qt.rst for instructions on building Astrocoin-Qt,
+the intended-for-end-users, nice-graphical-interface, reference
+implementation of Astrocoin.
+
+See doc/build-*.txt for instructions on building astrocoind,
+the intended-for-services, no-graphical-interface, reference
+implementation of Astrocoin.

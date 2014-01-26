@@ -39,7 +39,7 @@ namespace Checkpoints
         ;
     static const CCheckpointData data = {
         &mapCheckpoints,
-        1389066600, // * UNIX timestamp of last checkpoint block
+        1389066606, // * UNIX timestamp of last checkpoint block
         0,    // * total number of transactions between genesis and last checkpoint
                     //   (the tx=... number in the SetBestChain debug.log lines)
         8000.0     // * estimated number of transactions per day after checkpoint
@@ -74,8 +74,7 @@ namespace Checkpoints
 
         MapCheckpoints::const_iterator i = checkpoints.find(nHeight);
         if (i == checkpoints.end()) return true;
-            return hash == i->second;
-        return true;
+        return hash == i->second;
     }
 
     // Guess how far we are in the verification process at the given block index

@@ -35,12 +35,12 @@ namespace Checkpoints
     // + Contains no strange transactions
     static MapCheckpoints mapCheckpoints =
         boost::assign::map_list_of
-        (     0, uint256("0x"))
+        (     0, uint256("0xf5ae71e26c74beacc88382716aced69cddf3dffff24f384e1808905e0188f68f"))
         ;
     static const CCheckpointData data = {
         &mapCheckpoints,
-        1383887110, // * UNIX timestamp of last checkpoint block
-        2179203,    // * total number of transactions between genesis and last checkpoint
+        1389066600, // * UNIX timestamp of last checkpoint block
+        0,    // * total number of transactions between genesis and last checkpoint
                     //   (the tx=... number in the SetBestChain debug.log lines)
         8000.0     // * estimated number of transactions per day after checkpoint
     };
@@ -65,7 +65,7 @@ namespace Checkpoints
 
     bool CheckBlock(int nHeight, const uint256& hash)
     {
-return true;
+
         if (fTestNet) return true; // Testnet has no checkpoints
         if (!GetBoolArg("-checkpoints", true))
             return true;
@@ -74,7 +74,7 @@ return true;
 
         MapCheckpoints::const_iterator i = checkpoints.find(nHeight);
         if (i == checkpoints.end()) return true;
-     //   return hash == i->second;
+            return hash == i->second;
         return true;
     }
 
@@ -111,20 +111,17 @@ return true;
 
     int GetTotalBlocksEstimate()
     {
-return 0;
         if (fTestNet) return 0; // Testnet has no checkpoints
         if (!GetBoolArg("-checkpoints", true))
             return 0;
 
         const MapCheckpoints& checkpoints = *Checkpoints().mapCheckpoints;
 
-      //  return checkpoints.rbegin()->first;
-        return 0;
+        return checkpoints.rbegin()->first;
     }
 
     CBlockIndex* GetLastCheckpoint(const std::map<uint256, CBlockIndex*>& mapBlockIndex)
     {
-return NULL;
         if (fTestNet) return NULL; // Testnet has no checkpoints
         if (!GetBoolArg("-checkpoints", true))
             return NULL;
@@ -136,8 +133,7 @@ return NULL;
             const uint256& hash = i.second;
             std::map<uint256, CBlockIndex*>::const_iterator t = mapBlockIndex.find(hash);
             if (t != mapBlockIndex.end())
-            //    return t->second;
-                return NULL;
+                return t->second;
         }
         return NULL;
     }
